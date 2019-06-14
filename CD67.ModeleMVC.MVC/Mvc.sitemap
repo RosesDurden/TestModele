@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-3.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-3.0 MvcSiteMapSchema.xsd"
+            enableLocalization="true">
+
+  <mvcSiteMapNode title="Accueil" controller="Home" action="Index">
+    <mvcSiteMapNode title="Recherche" controller="Recherche" action="Index" key="Recherche"/>
+
+    <mvcSiteMapNode title="Les types de Viking" controller="TypeViking" action="Index">
+      <mvcSiteMapNode title="Création d'un Type" controller="TypeViking" action="Create" />
+      <mvcSiteMapNode title="Details d'un Type" controller="TypeViking" action="Details" preservedRouteParameters="id" />
+      <mvcSiteMapNode title="Edition d'un Type" controller="TypeViking" action="Edit" preservedRouteParameters="id" />
+      <mvcSiteMapNode title="Suppression d'un Type" controller="TypeViking" action="Delete" preservedRouteParameters="id" />
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Les Vikings" controller="Viking" action="Index" key="Vikings">
+      <mvcSiteMapNode title="Création d'un Viking" controller="Viking" action="Create" />
+      <mvcSiteMapNode title="Details d'un Viking" controller="Viking" action="Details" preservedRouteParameters="id" />
+      <mvcSiteMapNode title="Edition d'un Viking" controller="Viking" action="Edit" preservedRouteParameters="id" />
+      <mvcSiteMapNode title="Suppression d'un Viking" controller="Viking" action="Delete" preservedRouteParameters="id" />
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Tests d'impression" controller="PrintTest" action="Index" />
+  </mvcSiteMapNode>
+
+</mvcSiteMap>

@@ -1,0 +1,10 @@
+﻿@* Modèle d'affichage des valeurs booléennes représentées en bool qui ont l'annotation : [UIHint("YesNoBool")] *@
+﻿@model Nullable<Boolean>
+@if (Model == true)
+{
+    <span class="text-success glyphicon glyphicon-ok"></span>
+}
+else
+{
+    <span class="text-danger glyphicon glyphicon-remove"></span>
+}

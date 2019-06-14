@@ -1,0 +1,11 @@
+﻿@* Modèle d'affichage des valeurs booléennes représentées en int qui ont l'annotation : [UIHint("YesNoInt")] *@
+@model int
+
+@if (Model==1)
+{
+    <span class="text-success glyphicon glyphicon-ok"></span>
+}
+else
+{
+    <span class="text-danger glyphicon glyphicon-remove"></span>
+}

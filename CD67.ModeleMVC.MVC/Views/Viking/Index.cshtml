@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CD67.ModeleMVC.Entity.Viking>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>Vikings</title>
+<h1>Vikings</h1>
+<div class="col-lg-12">
+    <ul id="menu-l2">
+        <li id="li-menu-l2"><a id="a-li-menu-l2-active" class="btn-sm" href="~/">Accueil</a></li>
+        <li id="li-menu-l2"><a id="a-li-menu-l2" class="btn-sm" href="~/Viking">Vikings</a></li>
+        <li id="li-menu-l2"><a id="a-li-menu-l2" class="btn-sm" href="~/TypeViking">Type&#8239;de&#8239;Vikings</a></li>
+        <li id="li-menu-l2"><a id="a-li-menu-l2" class="btn-sm" href="#">Contact</a></li>
+    </ul>
+</div>
+
+<p>
+    @Html.ActionLink("Ajouter", "Create")
+</p>
+
+<table id="tableVikings" class="table datatable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeViking.Libelle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeViking.Libelle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Editer", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>

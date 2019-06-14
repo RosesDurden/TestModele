@@ -1,0 +1,173 @@
+﻿@{
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    var actionName = ViewContext.RouteData.Values["action"].ToString();
+    //Récupération de l'utilisateur connecté
+    CD67.ModeleMVC.MVC.Models.UtilisateurConnecte utilisateurConnecte = CD67.ModeleMVC.MVC.Internal.UtilisateurConnecteFactory.getUtilisateurConnecte();
+    string url = Request.Url.ToString();
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/Images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="~/Images/favicon.ico" />
+    @Styles.Render("~/Content/jquery-ui-css")
+    @Styles.Render("~/Content/datatable")
+    @Styles.Render("~/Content/css")
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+    @Scripts.RenderFormat("<script src=\"{0}\" defer></script>", "~/bundles/jquery")
+    @Scripts.RenderFormat("<script src=\"{0}\" defer></script>", "~/bundles/jqueryval")
+    @Scripts.RenderFormat("<script src=\"{0}\" defer></script>", "~/bundles/jquery-ui")
+    @Scripts.RenderFormat("<script src=\"{0}\" defer></script>", "~/bundles/bootstrap")
+    @Scripts.RenderFormat("<script src=\"{0}\" defer></script>", "~/bundles/datatable")
+    @Scripts.RenderFormat("<script src=\"{0}\" defer></script>", "~/bundles/cd67")
+
+    <!-- Ajout des classes no-screen et no-print -->
+    <style media="print">
+        .no-print {
+            display: none
+        }
+    </style>
+    <style type="text/css" media="screen">
+        .no-screen {
+            display: none
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container-cache"></div>
+    <header>
+        <nav class="navbar-fixed-top navbar-default no-margin">
+            <div id="topbar" class="navbar navbar-inner">
+                <div id="open-button" class="menu-button"><span>Menu invisible</span></div>
+                <ul id="titre" class="nav navbar ">
+                    <li><h1 id="app-title">Gestion des Vikings</h1></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="search">
+                        <form action="@Url.Action("Index", "Recherche", new { })" class="search-form">
+                            <label for="recherche">
+                                <input type="text" class="form-control input-search hidden" name="recherche" id="recherche" placeholder="Rechercher..." data-auto="" value="@Request["recherche"]">
+                            </label>
+                            <i class="icon-search fas fa-search fa-2x"></i>
+                        </form>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <strong>@utilisateurConnecte.libelle</strong>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <div class="col-lg-4 ">
+                                            <p class="text-center">
+                                                <span class="glyphicon glyphicon-user icon-size"></span>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p class="text-left"><strong>@utilisateurConnecte.login</strong></p>
+                                            <p class="text-left small">@utilisateurConnecte.email</p>
+                                            <p class="text-left">
+                                                <a href="#" class="btn btn-primary btn-block btn-sm">Paramètres</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <sidebar class="no-print navbar-collapse collapse hidden">
+            <ul class="sidebar-nav nav-stacked menu_principal">
+                <li>
+                    <div class="active menu-1">
+                        <i class="fas fa-headphones"></i>
+                        <span class="title"> Vikings</span>
+                    </div>
+                    <ul class="submenu hidden">
+                        <li><a href="@Url.Action("Index", "Viking", new { })"><span>Index</span></a></li>
+                        <li><a href="@Url.Action("Index", "Viking", new { })"><span>Plus de vikings</span></a></li>
+                    </ul>
+
+                </li>
+                <li>
+                    <div class="active menu-1">
+                        <i class="fas fa-table"></i>
+                        <span class="title"> Types de Vikings</span>
+                    </div>
+                    <ul class="submenu hidden">
+                        <li><a href="@Url.Action("Index", "TypeViking", new { })"><span>Index</span></a></li>
+                        <li><a href="@Url.Action("Index", "Viking", new { })"><span>Sous menu</span></a></li>
+                        <li><a href="@Url.Action("Index", "Viking", new { })"><span>Sous menu</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="active menu-1">
+                        <i class="fas fa-print"></i>
+                        <span class="title"> Test Impression</span>
+                    </div>
+                    <ul class="submenu hidden">
+                        <li><a href="@Url.Action("Index", "PrintTest", new { })"><span>Test Impression</span></a></li>
+                        <li><a href="@Url.Action("Index", "Viking", new { })"><span>Sous menu</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="active menu-1">
+                        <i class="fas fa-search"></i>
+                        <span class="title"> Recherche</span>
+                    </div>
+                    <ul class="submenu hidden">
+                        <li><a href="@Url.Action("Index", "Recherche", new { })"><span>Recherche</span></a></li>
+                        <li><a href="@Url.Action("Index", "Viking", new { })"><span>Sous menu</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </sidebar>
+    </header>
+    <div id="wrapper">
+        <div class="page-wrap no-print">
+            @Html.MvcSiteMap().SiteMapPath()
+        </div>
+        <div id="content">
+            @Html.Partial("_Flash")
+            @RenderBody()
+            <br /><br />
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-md-10 credentials">
+                        @*<a href="#">Contact</a> | <a href="#">Plan du site</a> | <a href="#" >F.A.Q.</a><i class="muted pull-right">© 2017 CD67. Tous droits réservés.</i>*@
+                    </div>
+                    <div class="col-md-2">
+                        <ul class="brand">
+                            @if (url.StartsWith("http://t-") == true || url.StartsWith("https://t-") == true)
+                            {
+                                <li><a href="/" title="Retour à l'accueil"><img src="~/Images/LogoCD67Recette.png" width="148" height="51" alt="CD67"></a></li>
+                            }
+                            else
+                            {
+                                <li><a href="/" title="Retour à l'accueil"><img src="~/Images/LogoCD67.png" width="148" height="51" alt="CD67"></a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

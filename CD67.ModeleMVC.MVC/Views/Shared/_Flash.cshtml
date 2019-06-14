@@ -1,0 +1,44 @@
+
+<div style="padding-top: 25px;">
+
+@if (Session["Error"] != null && !string.IsNullOrWhiteSpace(Session["Error"].ToString()))
+{
+    <br />
+    <div id="flash-messages" class=" alert alert-dismissible alert-danger">    
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <p>@Session["Error"].ToString()</p>
+    </div> 
+    Session.Remove("Error");
+}
+
+@if (Session["Success"] != null && !string.IsNullOrWhiteSpace(Session["Success"].ToString()))
+{
+    <br />
+    <div id="flash-messages" class="alert  alert-dismissible alert-success">    
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <p>@Session["Success"].ToString()</p>
+    </div> 
+    Session.Remove("Success");
+}
+
+@if (Session["Warning"] != null && !string.IsNullOrWhiteSpace(Session["Warning"].ToString()))
+{
+    <br />
+    <div id="flash-messages" class="alert alert-dismissible alert-warning">    
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <p>@Session["Warning"].ToString()</p>
+    </div> 
+    Session.Remove("Warning");
+}
+
+@if (Session["Info"] != null && !string.IsNullOrWhiteSpace(Session["Info"].ToString()))
+{
+    <br />
+    <div id="flash-messages" class="alert alert-dismissible alert-info">    
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <p>@Session["Info"].ToString()</p>
+    </div>
+
+    Session.Remove("Info");
+}
+</div>

@@ -1,0 +1,26 @@
+<solrconfig>
+  <core>modelemvc</core>
+  <champrecherche formobject="" displayName="Recherche">recherche</champrecherche>
+  <fl displayName="id">id</fl>
+  <fl displayName="Nom">nom</fl>
+  <fl displayName="Type">type_libelle</fl>
+  <fl displayName="Description">description</fl>
+  <fl displayName="Casque cornu">casque_cornu</fl>
+  <fl displayName="Nombre de victoires">nb_victoires</fl>
+  <fl displayName="Année de création">annee_creation</fl>
+  <fl displayName="Date d'édition">date_edition</fl>
+  <facette displayName="Type" type="string">type_libelle</facette>
+  <facette displayName="Casque cornu" type="string">casque_cornu</facette>
+  <facette displayName="Nombre de victoires" type="string">nb_victoires</facette>
+  <facette displayName="Année de création" type="string">annee_creation</facette>
+  <sort>id asc</sort>
+  <facettehierarchique></facettehierarchique>
+  <facetteduree></facetteduree>
+  <facettegeographique></facettegeographique>
+  <xslt>/xslt/resultat-recherche.xslt</xslt>
+  <rows>25</rows>
+  <afficherimmediatement>true</afficherimmediatement>
+  <criteresforces></criteresforces>
+  <messagenoresultat>Pas de résultat</messagenoresultat>
+  <afficherbouttonrecherche>false</afficherbouttonrecherche>
+</solrconfig>

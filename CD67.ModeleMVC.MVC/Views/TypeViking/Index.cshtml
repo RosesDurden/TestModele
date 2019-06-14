@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CD67.ModeleMVC.Entity.TypeViking>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<title>Type de Vikings</title>
+<h1>Type de Vikings</h1>
+<div>
+    <ul id="menu-l2">
+        <li id="li-menu-l2"><a id="a-li-menu-l2-active" class="btn-sm" href="~/">Accueil</a></li>
+        <li id="li-menu-l2"><a id="a-li-menu-l2" class="btn-sm" href="~/Viking">Vikings</a></li>
+        <li id="li-menu-l2"><a id="a-li-menu-l2" class="btn-sm" href="~/TypeViking">Type&#8239;de&#8239;Vikings</a></li>
+        <li id="li-menu-l2"><a id="a-li-menu-l2" class="btn-sm" href="#">Contact</a></li>
+
+    </ul>
+</div>
+<p>
+    @Html.ActionLink("Ajouter", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Libelle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Libelle)
+        </td>
+        <td>
+            @Html.ActionLink("Editer", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

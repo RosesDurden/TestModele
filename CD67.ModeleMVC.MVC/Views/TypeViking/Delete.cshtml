@@ -1,0 +1,38 @@
+﻿@model CD67.ModeleMVC.Entity.TypeViking
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>Type de Vikings</title>
+
+<h2>Suppression</h2>
+
+<h3>Voulez-vous vraiment supprimer cet enregistrement?</h3>
+<div>
+    <h4>Type de Viking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Libelle)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-7">
+        </div>
+        <div class="form-group col-md-5">
+            <input type="submit" value="Supprimer" class="btn btn-danger" />
+            <input onclick="location.href='@Url.Action("Index", "TypeViking")';return false;" value="Retour" class="btn btn-default" />
+        </div>
+    }
+</div>
+
+<br />

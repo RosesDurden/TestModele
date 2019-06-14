@@ -1,0 +1,3 @@
+﻿@* Modèle d'édition des valeurs booléennes représentées en bool qui ont l'annotation : [UIHint("YesNoBool")] *@﻿
+@model Nullable<Boolean>
+@Html.DropDownList("", new SelectListItem[] { new SelectListItem() { Text = "Oui", Value = "1", Selected = (Model == true) }, new SelectListItem() { Text = "Non", Value = "0", Selected = !(Model == true) } }, new { @class = "form-control" })

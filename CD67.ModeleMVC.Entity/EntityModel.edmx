@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModeleMVC.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModeleMVCStoreContainer">
+    <EntitySet Name="TypesViking" EntityType="ModeleMVC.Store.TypesViking" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Vikings" EntityType="ModeleMVC.Store.Vikings" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="TypeVikingViking" Association="ModeleMVC.Store.TypeVikingViking">
+      <End Role="TypeViking" EntitySet="TypesViking" />
+      <End Role="Viking" EntitySet="Vikings" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TypesViking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Vikings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="CasqueCornu" Type="bit" Nullable="false" />
+    <Property Name="NombreVictoires" Type="int" Nullable="true" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DateCreation" Type="datetime" Nullable="false" />
+    <Property Name="DateEdition" Type="datetime" Nullable="false" />
+    <Property Name="TypeVikingId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="TypeVikingViking">
+    <End Role="TypeViking" Type="ModeleMVC.Store.TypesViking" Multiplicity="1" />
+    <End Role="Viking" Type="ModeleMVC.Store.Vikings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeViking">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Viking">
+        <PropertyRef Name="TypeVikingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModeleMVC" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TypeViking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Viking" Relationship="ModeleMVC.TypeVikingViking" FromRole="TypeViking" ToRole="Viking" />
+        </EntityType>
+        <EntityType Name="Viking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CasqueCornu" Type="Boolean" Nullable="false" />
+          <Property Name="NombreVictoires" Type="Int32" DefaultValue="0" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreation" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateEdition" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="TypeViking" Relationship="ModeleMVC.TypeVikingViking" FromRole="Viking" ToRole="TypeViking" />
+          <Property Name="TypeVikingId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ModeleMVCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TypesViking" EntityType="ModeleMVC.TypeViking" />
+          <EntitySet Name="Vikings" EntityType="ModeleMVC.Viking" />
+          <AssociationSet Name="TypeVikingViking" Association="ModeleMVC.TypeVikingViking">
+            <End Role="TypeViking" EntitySet="TypesViking" />
+            <End Role="Viking" EntitySet="Vikings" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="TypeVikingViking">
+          <End Type="ModeleMVC.TypeViking" Role="TypeViking" Multiplicity="1" />
+          <End Type="ModeleMVC.Viking" Role="Viking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeViking">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Viking">
+              <PropertyRef Name="TypeVikingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModeleMVCStoreContainer" CdmEntityContainer="ModeleMVCEntities">
+    <EntitySetMapping Name="TypesViking">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeleMVC.TypeViking)">
+        <MappingFragment StoreEntitySet="TypesViking">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vikings">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeleMVC.Viking)">
+        <MappingFragment StoreEntitySet="Vikings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="CasqueCornu" ColumnName="CasqueCornu" />
+          <ScalarProperty Name="NombreVictoires" ColumnName="NombreVictoires" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+          <ScalarProperty Name="DateEdition" ColumnName="DateEdition" />
+          <ScalarProperty Name="TypeVikingId" ColumnName="TypeVikingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

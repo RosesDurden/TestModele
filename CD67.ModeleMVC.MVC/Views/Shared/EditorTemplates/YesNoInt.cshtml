@@ -1,0 +1,4 @@
+﻿@* Modèle d'édition des valeurs booléennes représentées en int qui ont l'annotation : [UIHint("YesNoInt")] *@
+@model int
+
+@Html.DropDownList("", new SelectListItem[] { new SelectListItem() { Text = "Oui", Value = "1", Selected = (Model == 1) }, new SelectListItem() { Text = "Non", Value = "0", Selected = !(Model == 1) } }, new { @class = "form-control" } )

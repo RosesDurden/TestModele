@@ -1,0 +1,17 @@
+﻿@model Nullable<DateTime>
+@{
+    IDictionary<string, object> htmlAttributes;
+    object objAttributes;
+    if (ViewData.TryGetValue("htmlAttributes", out objAttributes))
+    {
+        htmlAttributes = objAttributes as IDictionary<string, object> ?? HtmlHelper.AnonymousObjectToHtmlAttributes(objAttributes);
+    }
+    else
+    {
+        htmlAttributes = new RouteValueDictionary();
+    }
+    htmlAttributes.Add("type", "text");
+    htmlAttributes["class"] += " datefield";
+    String format = "{0:d}";
+    @Html.TextBox("", Model, format, htmlAttributes)
+}

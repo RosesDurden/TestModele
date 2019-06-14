@@ -1,0 +1,27 @@
+﻿<title>Recherche</title>
+
+@{
+    ViewBag.Title = "Recherche";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Recherche</h1>
+
+<div>
+    @using (Html.BeginForm("Index", "Recherche", FormMethod.Get, new { @class = "form-horizontal  col-md-3 filet-right flex" }))
+    {
+    @Html.AntiForgeryToken()
+    <div class="form-group recherche-input">
+        <div class="input-group">
+            @Html.TextBox("Recherche", "", new { @class = "form-control auto", data_auto = "Recherche", placeholder = "rechercher un vikings...", @autofocus = true })
+            <div class="input-group-addon">
+                <button  type="submit" style="background:none; border:none;padding:0;">
+                    <span class="fas fa-search color1" style="vertical-align: middle" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    }
+    <div class="div-resultat">
+        @(new HtmlString(ViewData["xmlData"].ToString()))
+    </div>
+</div>

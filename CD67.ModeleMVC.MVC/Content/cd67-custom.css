@@ -1,0 +1,42 @@
+﻿/* Breadcrumb et mise en avant */
+.color1 {
+    color: white;
+}
+
+#breadcrumbs-one a {
+    color: black;
+}
+
+
+
+/* Fond de la sidebar */
+.color2 {
+    color: #5a5555;
+}
+
+#wrapper.toggled-2 #sidebar-wrapper {
+    background-color: #5a5555;
+}
+
+.background-color2 {
+    background-color: #5a5555;
+}
+
+#a-li-menu-l2-active {
+    border-bottom-color: #5a5555;
+}
+
+textarea:not(:empty):not(:placeholder-shown):not(:focus)[aria-invalid='true'],input:not([value=""]):not(:placeholder-shown):not(:focus)[aria-invalid='true']{
+    background-color: rgba(255, 0, 0, 0.5) /*rgba(218, 18, 81, O.5)*/}
+
+input[aria-required='true'], textarea[aria-required='true'] {
+     border-color:#f00
+}
+
+.pagination {
+     background: #eee;
+    padding: 10px;
+    width: 100%;
+    text-align:center;
+    margin:0;
+}
